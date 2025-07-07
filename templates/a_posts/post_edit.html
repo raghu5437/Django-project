@@ -1,0 +1,30 @@
+{% extends 'layouts/b.html' %}
+
+{% block content %}
+
+<h1>Edit Post</h1>
+<div class="card p-4">
+    <div class="flex items-center mb-4">
+        <img 
+            class="w-20 h-20 object-cover rounded-xl mr-4" 
+            src="{{ post.image }}"
+            alt="{{ post.title|default:'Post image' }}"
+            title="{{ post.title|default:'Post' }}">
+        <h3 class="text-lg font-bold">{{ post.title|default:'Untitled Post' }}</h3>
+    </div>
+    
+    <div class="pb-2">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="post-content" class="block mb-2 font-semibold">Edit your post</label>
+            {{ form }}
+            <div class="pt-4">
+                <button type="submit" class="button primaryAction">Submit</button>
+                <a class="button secondaryAction ml-1" href="{% url 'home' %}">Go Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
